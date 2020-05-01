@@ -16,7 +16,7 @@ creating anew image we can mount the specified location of the smae image with c
 container.
 
 sudo docker run -d --rm --name ngweb \
---mount type=bind,source=/home/sharad/docker/files/nginx/example.conf,target=/etc/nginx/conf.d/default.conf \
+--mount type=bind,source=/home/sharad/docker/files/nginx/example.conf,target=/etc/nginx/conf.d/default.conf,readonly=true \
 --mount type=bind,source=/home/sharad/docker/files/nginx/example.log,target=/var/log/nginx/custom.host.access.log  \
 --mount type=bind,source=/home/sharad/docker/files/nginx/index.html,target=/usr/share/nginx/html/index.html \
 -p 80:80 \
