@@ -24,3 +24,18 @@ nginx:latest
 
 In the above command we have taken nginx image and updated the nginx conf file, location of log file generation and the 
 html file. 
+
+2. In Memory storage
+Sometimes we need to keep Api files, passwords and private key files for a coantainer to run properly. It's not advised to 
+keep them in image. Docker has provided a way to store these information in memory till the life of the container.
+To do this we needt omake the type of mount as tmpfs. 
+
+docker run --rm \
+--mount type=tmpfs,dst=/tmp,tmpfs-size=12k,tmpfs-mode=1770 \
+--entrypoint mount \
+alpine:latest -v
+
+The location of memory is assigned to /tmp directory with size of 12k and is not readable by other in container users.
+
+3. Docker Valumes
+
