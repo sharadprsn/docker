@@ -37,5 +37,11 @@ alpine:latest -v
 
 The location of memory is assigned to /tmp directory with size of 12k and is not readable by other in container users.
 
-3. Docker Valumes
+3. Docker Volumes
+In case we want to store some data and want to share it with some other appliation or other instance of same application 
+we can use docker volume. It persists data in a disk location.
+
+sudo docker volume create --driver local --label example=files files-shared
+sudo docker --volume files-shared:/var/lib/data --name abc myapp 
+sudo docker --volume files-shared:/var/lib/data --name abc1 myapp 
 
