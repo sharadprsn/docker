@@ -1,0 +1,21 @@
+As during oscastration we will have multiple docker application running on same platform, its importaint to allocate each of
+then some resources to avoid a buggy application effcting other application. This is done through following ways.
+
+1--> Resource allowances:: By defaule docker containers may use unlimited memory,CPU and device I/O resource. To avoid it
+docker container create and run command provide flags for managing available resources.
+docker run -d --rm --name test1 --memory 256m --cpu-shares=1024 --cap-drop net_raw -p 80:80 nginx
+The memory allocations is not reservation, its just a protection against overconsumption.
+
+docker stats command is used to monitor memory utilization in running containers.
+
+Docker lets you maintain CPU distribution in 2 ways. Specify relative weight of a container to other containers. It means if
+there are 2 containers running with --cpu-shares as 1 and 1 then both will get haslf the cpu cycle. In case of 1 and 2, they
+will get 33% and 66% of cpu cycles respectively. cpus option allocates a quota of cpus t the process to work. ordPress example 
+consume a maximum of 0.75 CPU cores:
+docker run -d --rm --name test1 --memory 256m --cpus=.75 --cap-drop net_raw -p 80:80 nginx
+similarly flag --cpuset-cpus refers to cores od processors.
+Access to devices is needed if an app needs webcam. below example will work if a webcam is present at dev/video0
+docker container run -it --rm --device /dev/video0:/dev/video0 ubuntu:16.04 ls -al /dev
+
+
+
