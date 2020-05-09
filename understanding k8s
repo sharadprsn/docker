@@ -1,0 +1,2 @@
+k8s cluster is having many nodes divided into 2 types. Master node that hosts kubernetes control panel and manage the whole 
+kubernetes system. Worker nodes run the actual deployed application.
